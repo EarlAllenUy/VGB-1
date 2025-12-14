@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VGB — My Favorites</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+
+<body data-page="user-favorites">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="../../assets/images/VGB_Logo.png" alt="VGB logo">
+      <div>
+        <div class="brand-title">Video Game Bulletin</div>
+        <div class="brand-sub">Your saved games</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="navbtn" href="./index.html">Catalog</a>
+      <a class="navbtn" href="./favorites.html" aria-current="page">Favorites</a>
+      <a class="navbtn" href="./my-reviews.html">My Reviews</a>
+      <a class="navbtn" href="./calendar.html">Calendar</a>
+      <a class="navbtn" href="../shared/catalog.html">Public</a>
+    </nav>
+
+    <div class="userbar">
+      <div class="pill">
+        <div class="pill-name" id="pillName">—</div>
+        <div class="pill-role" id="pillRole">—</div>
+      </div>
+      <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="layout" style="grid-template-columns: 1fr;">
+    <section class="main">
+      <div class="toolbar">
+        <div>
+          <div class="h1">Favorites</div>
+          <div class="muted">Your saved games. Remove anytime.</div>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn ghost" id="refreshBtn" type="button">Refresh</button>
+        </div>
+      </div>
+
+      <div id="favGrid" class="grid"></div>
+
+      <div id="favEmpty" class="empty" hidden>
+        <div class="empty-title">No favorites yet</div>
+        <div class="muted">Go to Catalog and click ★ Favorite.</div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../../js/main.js"></script>
+</body>
+</html>

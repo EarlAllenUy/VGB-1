@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VGB — Admin Calendar</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+
+<body data-page="admin-calendar">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="../../assets/images/VGB_Logo.png" alt="VGB logo">
+      <div>
+        <div class="brand-title">Video Game Bulletin</div>
+        <div class="brand-sub">Admin • Release Calendar</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="navbtn" href="./index.html">Dashboard</a>
+      <a class="navbtn" href="./add-game.html">Add Game</a>
+      <a class="navbtn" href="./calendar.html" aria-current="page">Calendar</a>
+      <a class="navbtn" href="./reviews.html">Reviews</a>
+    </nav>
+
+    <div class="userbar">
+      <div class="pill">
+        <div class="pill-name" id="pillName">—</div>
+        <div class="pill-role" id="pillRole">—</div>
+      </div>
+      <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="layout" style="grid-template-columns: 1fr;">
+    <section class="main">
+      <div class="toolbar">
+        <div>
+          <div class="h1">Admin Calendar</div>
+          <div class="muted">Same calendar view, but with admin navigation.</div>
+        </div>
+        <div class="toolbar-right">
+          <a class="btn primary" href="./add-game.html">+ Add Game</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="cal-head">
+          <button class="btn ghost" id="calPrev" type="button">←</button>
+          <div class="cal-title" id="calTitle">—</div>
+          <button class="btn ghost" id="calNext" type="button">→</button>
+          <div class="spacer"></div>
+          <button class="btn ghost" id="calToday" type="button">Today</button>
+        </div>
+
+        <div id="calendar" class="calendar"></div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../../js/main.js"></script>
+</body>
+</html>

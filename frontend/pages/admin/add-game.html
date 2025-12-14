@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VGB — Add Game</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+
+<body data-page="admin-add-game">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="../../assets/images/VGB_Logo.png" alt="VGB logo">
+      <div>
+        <div class="brand-title">Video Game Bulletin</div>
+        <div class="brand-sub">Admin • Add New Game</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="navbtn" href="./index.html">Dashboard</a>
+      <a class="navbtn" href="./add-game.html" aria-current="page">Add Game</a>
+      <a class="navbtn" href="./calendar.html">Calendar</a>
+      <a class="navbtn" href="./reviews.html">Reviews</a>
+    </nav>
+
+    <div class="userbar">
+      <div class="pill">
+        <div class="pill-name" id="pillName">—</div>
+        <div class="pill-role" id="pillRole">—</div>
+      </div>
+      <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="layout" style="grid-template-columns: 1fr;">
+    <section class="main">
+      <div class="toolbar">
+        <div>
+          <div class="h1">Add New Game</div>
+          <div class="muted">Creates a new game record in MongoDB.</div>
+        </div>
+        <div class="toolbar-right">
+          <a class="btn ghost" href="./index.html">← Back</a>
+        </div>
+      </div>
+
+      <div class="panel" style="padding:16px;">
+        <form id="addGameForm" class="form">
+          <div class="row">
+            <label class="field" style="flex:2;">
+              <span>Title</span>
+              <input id="title" required />
+            </label>
+
+            <label class="field" style="flex:1;">
+              <span>Status</span>
+              <select id="status" required>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Released">Released</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Description</span>
+            <textarea id="description" rows="4" required></textarea>
+          </label>
+
+          <div class="row cols3">
+            <label class="field">
+              <span>Release Date</span>
+              <input id="releaseDate" type="date" required />
+            </label>
+
+            <label class="field">
+              <span>Platform(s) (comma-separated)</span>
+              <input id="platform" placeholder="PC, PS5, Xbox" required />
+            </label>
+
+            <label class="field">
+              <span>Genre(s) (comma-separated)</span>
+              <input id="genre" placeholder="RPG, Action" required />
+            </label>
+          </div>
+
+          <div class="row cols3">
+            <label class="field span2">
+              <span>Cover Image URL</span>
+              <input id="imageURL" placeholder="https://… or /images/…" required />
+            </label>
+
+            <div class="field">
+              <span>Preview</span>
+              <div class="thumb preview">
+                <img id="imgPreview" alt="Preview" >
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary" type="submit">Create Game</button>
+            <button class="btn ghost" id="resetBtn" type="reset">Reset</button>
+          </div>
+
+          <div class="alert" id="formMsg" hidden></div>
+          <div class="muted">
+            Note: use an image URL string (not base64) for MongoDB-compatible setup.
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../../js/main.js"></script>
+</body>
+</html>

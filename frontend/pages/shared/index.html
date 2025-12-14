@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VGB — Welcome</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+
+<body data-page="shared-index">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="../../assets/images/VGB_Logo.png" alt="VGB logo">
+      <div>
+        <div class="brand-title">Video Game Bulletin</div>
+        <div class="brand-sub">Releases • Reviews • Ratings</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="navbtn" href="./catalog.html">Catalog</a>
+      <a class="navbtn" href="./index.html" aria-current="page">Home</a>
+    </nav>
+
+    <div class="userbar">
+      <div class="pill">
+        <div class="pill-name" id="pillName">Guest</div>
+        <div class="pill-role" id="pillRole">Browsing</div>
+      </div>
+      <button class="btn primary" id="loginBtn" type="button">Login</button>
+      <button class="btn ghost" id="logoutBtn" type="button" hidden>Logout</button>
+    </div>
+  </header>
+
+  <main class="layout" style="grid-template-columns:1fr;">
+    <section class="main">
+      <div class="panel" style="padding:22px;">
+        <div class="h1" style="margin-bottom:6px;">Welcome to VGB</div>
+        <div class="muted" style="max-width:74ch;">
+          Browse game releases with cover images, search and filter games, and read community reviews.
+          Create an account to write reviews and save favorites.
+        </div>
+
+        <div class="actions" style="margin-top:14px; flex-wrap:wrap;">
+          <a class="btn primary" href="./catalog.html">Enter Catalog</a>
+          <button class="btn ghost" id="openRegister" type="button">Create Account</button>
+          <button class="btn ghost" id="openLogin" type="button">Login</button>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:14px;">
+        <div class="panel-title">What guests can do</div>
+        <div class="muted">
+          Browse the catalog, filter/search titles, open detailed game pages, and read reviews.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" hidden></div>
+
+  <!-- Auth modal (IDs are “main.js-friendly”) -->
+  <dialog class="modal" id="authModal" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <div class="modal-head">
+        <div class="modal-title">Account</div>
+        <button class="iconbtn" id="authClose" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div class="tabs">
+        <button type="button" class="tab active" id="tabLogin" aria-selected="true">Login</button>
+        <button type="button" class="tab" id="tabRegister" aria-selected="false">Register</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="alert" id="authError" hidden></div>
+
+        <section id="paneLogin">
+          <form id="loginForm">
+            <label class="field">
+              <span>Email</span>
+              <input id="loginEmail" type="email" autocomplete="email" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <input id="loginPassword" type="password" autocomplete="current-password" required />
+            </label>
+            <div class="actions">
+              <button class="btn primary" type="submit">Login</button>
+              <button class="btn ghost" type="button" id="toRegister">Create account</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="paneRegister" hidden>
+          <form id="registerForm">
+            <label class="field">
+              <span>Username</span>
+              <input id="regUsername" autocomplete="username" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input id="regEmail" type="email" autocomplete="email" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <input id="regPassword" type="password" autocomplete="new-password" required />
+            </label>
+
+            <details class="details">
+              <summary>Account type (optional)</summary>
+              <label class="field">
+                <span>User Type</span>
+                <select id="regUserType">
+                  <option value="Registered">Registered</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </label>
+            </details>
+
+            <div class="actions">
+              <button class="btn primary" type="submit">Register</button>
+              <button class="btn ghost" type="button" id="toLogin">Back to login</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="../../js/main.js"></script>
+</body>
+</html>

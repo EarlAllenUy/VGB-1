@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VGB — Admin Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+
+<body data-page="admin-index">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="../../assets/images/VGB_Logo.png" alt="VGB logo">
+      <div>
+        <div class="brand-title">Video Game Bulletin</div>
+        <div class="brand-sub">Admin • Manage Games • Moderate Reviews</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="navbtn" href="./index.html" aria-current="page">Dashboard</a>
+      <a class="navbtn" href="./add-game.html">Add Game</a>
+      <a class="navbtn" href="./calendar.html">Calendar</a>
+      <a class="navbtn" href="./reviews.html">Reviews</a>
+      <a class="navbtn" href="../shared/catalog.html" title="Public view">Public</a>
+    </nav>
+
+    <div class="userbar">
+      <div class="pill">
+        <div class="pill-name" id="pillName">—</div>
+        <div class="pill-role" id="pillRole">—</div>
+      </div>
+      <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel-title">Admin Actions</div>
+        <div class="actions">
+          <a class="btn primary" href="./add-game.html">+ Add New Game</a>
+          <a class="btn ghost" href="./reviews.html">Moderate Reviews</a>
+          <a class="btn ghost" href="./calendar.html">Open Calendar</a>
+        </div>
+        <!-- (Removed) Admin access note: keep dashboard clean for presentation. -->
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Quick Stats</div>
+        <div class="stats">
+          <div class="stat"><div class="num" id="statGames">—</div><div class="lab">Games</div></div>
+          <div class="stat"><div class="num" id="statUpcoming">—</div><div class="lab">Upcoming</div></div>
+          <div class="stat"><div class="num" id="statReleased">—</div><div class="lab">Released</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Search</div>
+        <label class="field">
+          <span>Find game</span>
+          <input id="adminSearch" type="search" placeholder="Search by title…" />
+        </label>
+        <div class="actions">
+          <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn ghost" id="clearBtn" type="button">Clear</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="main">
+      <div class="toolbar">
+        <div>
+          <div class="h1">Admin Dashboard</div>
+          <div class="muted">Edit, delete, and review your current catalog.</div>
+        </div>
+        <div class="toolbar-right">
+          <label class="field inline">
+            <span>Sort</span>
+            <select id="sortBy">
+              <option value="releaseDesc">Release (new → old)</option>
+              <option value="releaseAsc">Release (old → new)</option>
+              <option value="titleAsc">Title (A → Z)</option>
+              <option value="ratingDesc">Rating (high → low)</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div id="adminGrid" class="grid"></div>
+
+      <div id="adminEmpty" class="empty" hidden>
+        <div class="empty-title">No games found</div>
+        <div class="muted">Try a different search term or add a new game.</div>
+      </div>
+
+    <!-- (Removed) Debug/expected behavior note: not needed for end-users. -->
+    </section>
+  </main>
+
+  <script type="module" src="../../js/main.js"></script>
+</body>
+</html>

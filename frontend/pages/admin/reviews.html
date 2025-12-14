@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VGB — Moderate Reviews</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+
+<body data-page="admin-reviews">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="../../assets/images/VGB_Logo.png" alt="VGB logo">
+      <div>
+        <div class="brand-title">Video Game Bulletin</div>
+        <div class="brand-sub">Admin • Review Moderation</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="navbtn" href="./index.html">Dashboard</a>
+      <a class="navbtn" href="./add-game.html">Add Game</a>
+      <a class="navbtn" href="./calendar.html">Calendar</a>
+      <a class="navbtn" href="./reviews.html" aria-current="page">Reviews</a>
+    </nav>
+
+    <div class="userbar">
+      <div class="pill">
+        <div class="pill-name" id="pillName">—</div>
+        <div class="pill-role" id="pillRole">—</div>
+      </div>
+      <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel-title">Search</div>
+        <label class="field">
+          <span>Filter reviews</span>
+          <input id="reviewSearch" type="search" placeholder="Search by game/user/text…" />
+        </label>
+        <div class="actions">
+          <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn ghost" id="clearBtn" type="button">Clear</button>
+        </div>
+        <div class="muted">Delete inappropriate reviews and ratings.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Quick Actions</div>
+        <div class="actions">
+          <a class="btn ghost" href="./index.html">Back to Dashboard</a>
+          <a class="btn ghost" href="../shared/catalog.html">Open Public Catalog</a>
+        </div>
+      </div>
+    </aside>
+
+    <section class="main">
+      <div class="toolbar">
+        <div>
+          <div class="h1">Moderate Reviews</div>
+          <div class="muted">Manual moderation queue.</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">All Reviews</div>
+        <div id="adminReviewList" class="list"></div>
+
+        <div id="adminReviewEmpty" class="empty" hidden>
+          <div class="empty-title">No reviews found</div>
+          <div class="muted">Either there are none, or your filter is too strict.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../../js/main.js"></script>
+</body>
+</html>

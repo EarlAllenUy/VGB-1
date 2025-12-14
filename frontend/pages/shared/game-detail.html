@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VGB — Game Detail</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+
+<body data-page="shared-game-detail">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="../../assets/images/VGB_Logo.png" alt="VGB logo">
+      <div>
+        <div class="brand-title">Video Game Bulletin</div>
+        <div class="brand-sub">Game details • Reviews • Ratings</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="navbtn" href="./catalog.html">Catalog</a>
+      <a class="navbtn" href="./index.html">Home</a>
+    </nav>
+
+    <div class="userbar">
+      <div class="pill">
+        <div class="pill-name" id="pillName">Guest</div>
+        <div class="pill-role" id="pillRole">Browsing</div>
+      </div>
+      <button class="btn primary" id="loginBtn" type="button">Login</button>
+      <button class="btn ghost" id="logoutBtn" type="button" hidden>Logout</button>
+    </div>
+  </header>
+
+  <main class="layout" style="grid-template-columns:1fr;">
+    <section class="main">
+      <div class="toolbar">
+        <div>
+          <div class="h1" id="gameTitle">Game</div>
+          <div class="muted" id="gameSub">Loading details…</div>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn ghost" id="backBtn" type="button">← Back</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="gd" style="display:grid;grid-template-columns:320px 1fr;gap:14px;">
+          <div class="left">
+            <div class="thumb" style="height:220px;border-radius:18px;overflow:hidden;border:1px solid var(--line);">
+              <img id="heroImg" src="" alt="Cover" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+
+            <div class="meta" style="margin-top:10px;">
+              <span><b>Status:</b> <span id="gStatus">—</span></span>
+              <span><b>Release:</b> <span id="gRelease">—</span></span>
+            </div>
+
+            <div class="meta" style="margin-top:6px;">
+              <span><b>Rating:</b> <span id="gRating">—</span></span>
+              <span></span>
+            </div>
+
+            <div class="tags" id="gTags" style="margin-top:10px;"></div>
+
+            <div class="actions" style="margin-top:12px;">
+              <button class="btn primary" id="favBtn" type="button">☆ Favorite</button>
+            </div>
+
+            <div class="muted" id="favHint" style="margin-top:8px;">
+              Login as a registered user to favorite.
+            </div>
+          </div>
+
+          <div class="right">
+            <div style="font-weight:900;margin-bottom:6px;">Description</div>
+            <div class="muted" id="gDesc">—</div>
+
+            <div style="font-weight:900;margin:16px 0 6px;">Reviews</div>
+
+            <div id="reviewComposer" class="panel" style="padding:12px; display:none;">
+              <div class="row">
+                <label class="field">
+                  <span>Star rating (1–5)</span>
+                  <select id="ratingSel">
+                    <option value="">No rating</option>
+                    <option value="1">1★</option><option value="2">2★</option><option value="3">3★</option>
+                    <option value="4">4★</option><option value="5">5★</option>
+                  </select>
+                </label>
+                <div class="field">
+                  <span>&nbsp;</span>
+                  <button class="btn primary" id="postReview" type="button">Post</button>
+                </div>
+              </div>
+
+              <label class="field">
+                <span>Text review (optional)</span>
+                <textarea id="reviewText" rows="3"></textarea>
+              </label>
+
+              <div class="muted">Text-only or rating-only is allowed.</div>
+            </div>
+
+            <div id="reviewLocked" class="muted">
+              Login as a registered user to post a review.
+            </div>
+
+            <div id="reviewList" class="list" style="margin-top:10px;"></div>
+          </div>
+        </div>
+
+        <style>
+          @media(max-width:860px){ .gd{grid-template-columns:1fr !important} }
+        </style>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" hidden></div>
+
+  <!-- Auth modal -->
+  <dialog class="modal" id="authModal" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <div class="modal-head">
+        <div class="modal-title">Account</div>
+        <button class="iconbtn" id="authClose" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div class="tabs">
+        <button type="button" class="tab active" id="tabLogin" aria-selected="true">Login</button>
+        <button type="button" class="tab" id="tabRegister" aria-selected="false">Register</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="alert" id="authError" hidden></div>
+
+        <section id="paneLogin">
+          <form id="loginForm">
+            <label class="field"><span>Email</span><input id="loginEmail" type="email" required /></label>
+            <label class="field"><span>Password</span><input id="loginPassword" type="password" required /></label>
+            <div class="actions">
+              <button class="btn primary" type="submit">Login</button>
+              <button class="btn ghost" type="button" id="toRegister">Create account</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="paneRegister" hidden>
+          <form id="registerForm">
+            <label class="field"><span>Username</span><input id="regUsername" required /></label>
+            <label class="field"><span>Email</span><input id="regEmail" type="email" required /></label>
+            <label class="field"><span>Password</span><input id="regPassword" type="password" required /></label>
+            <details class="details">
+              <summary>Account type (optional)</summary>
+              <label class="field">
+                <span>User Type</span>
+                <select id="regUserType">
+                  <option value="Registered">Registered</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </label>
+            </details>
+            <div class="actions">
+              <button class="btn primary" type="submit">Register</button>
+              <button class="btn ghost" type="button" id="toLogin">Back to login</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="../../js/main.js"></script>
+</body>
+</html>
